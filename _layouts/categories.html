@@ -2,11 +2,11 @@
 layout: page
 # All the Categories of posts
 ---
-
 {% include lang.html %}
 
 {% assign HEAD_PREFIX = 'h_' %}
 {% assign LIST_PREFIX = 'l_' %}
+{% assign MID_PREFIX = 'm_' %}
 
 {% assign group_index = 0 %}
 
@@ -18,19 +18,18 @@ layout: page
   {% assign first_post = posts_of_category | first %}
 
   {% if category_name == first_post.categories[0] %}
-    {% assign sub_categories = '' | split: '' %}
-
+    <!-- collect middle (second-level) categories from posts where first == top -->
+    {% assign mid_categories = '' | split: '' %}
     {% for post in posts_of_category %}
-      {% assign second_category = post.categories[1] %}
-      {% if second_category %}
-        {% unless sub_categories contains second_category %}
-          {% assign sub_categories = sub_categories | push: second_category %}
+      {% assign mid = post.categories[1] %}
+      {% if mid %}
+        {% unless mid_categories contains mid %}
+          {% assign mid_categories = mid_categories | push: mid %}
         {% endunless %}
       {% endif %}
     {% endfor %}
-
-    {% assign sub_categories = sub_categories | sort %}
-    {% assign sub_categories_size = sub_categories | size %}
+    {% assign mid_categories = mid_categories | sort %}
+    {% assign mid_categories_size = mid_categories | size %}
 
     <div class="card categories">
       <!-- top-category -->
@@ -39,17 +38,17 @@ layout: page
         class="card-header d-flex justify-content-between hide-border-bottom"
       >
         <span class="ms-2">
-          <i class="far fa-folder{% if sub_categories_size > 0 %}-open{% endif %} fa-fw"></i>
+          <i class="far fa-folder{% if mid_categories_size > 0 %}-open{% endif %} fa-fw"></i>
 
           {% capture _category_url %}/categories/{{ category_name | slugify | url_encode }}/{% endcapture %}
           <a href="{{ _category_url | relative_url }}" class="mx-2">{{ category_name }}</a>
 
           <!-- content count -->
-          {% assign top_posts_size = site.categories[category_name] | size %}
+          {% assign top_posts_size = posts_of_category | size %}
           <span class="text-muted small font-weight-light">
-            {% if sub_categories_size > 0 %}
-              {{ sub_categories_size }}
-              {% if sub_categories_size > 1 %}
+            {% if mid_categories_size > 0 %}
+              {{ mid_categories_size }}
+              {% if mid_categories_size > 1 %}
                 {{
                   site.data.locales[lang].categories.category_measure.plural
                   | default: site.data.locales[lang].categories.category_measure
@@ -79,8 +78,8 @@ layout: page
           </span>
         </span>
 
-        <!-- arrow -->
-        {% if sub_categories_size > 0 %}
+        <!-- arrow (toggle top list) -->
+        {% if mid_categories_size > 0 %}
           <a
             href="#{{ LIST_PREFIX }}{{ group_index }}"
             data-bs-toggle="collapse"
@@ -98,34 +97,111 @@ layout: page
       </div>
       <!-- .card-header -->
 
-      <!-- Sub-categories -->
-      {% if sub_categories_size > 0 %}
+      <!-- Middle categories list -->
+      {% if mid_categories_size > 0 %}
         <div id="{{ LIST_PREFIX }}{{ group_index }}" class="collapse show" aria-expanded="true">
           <ul class="list-group">
-            {% for sub_category in sub_categories %}
-              <li class="list-group-item">
-                <i class="far fa-folder fa-fw"></i>
-
-                {% capture _sub_ctg_url %}/categories/{{ sub_category | slugify | url_encode }}/{% endcapture %}
-                <a href="{{ _sub_ctg_url | relative_url }}" class="mx-2">{{ sub_category }}</a>
-
-                {% assign posts_size = site.categories[sub_category] | size %}
-                <span class="text-muted small font-weight-light">
-                  {{ posts_size }}
-
-                  {% if posts_size > 1 %}
-                    {{
-                      site.data.locales[lang].categories.post_measure.plural
-                      | default: site.data.locales[lang].categories.post_measure
-                    }}
-                  {% else %}
-                    {{
-                      site.data.locales[lang].categories.post_measure.singular
-                      | default: site.data.locales[lang].categories.post_measure
-                    }}
+            {% assign mid_index = 0 %}
+            {% for mid in mid_categories %}
+              <!-- collect small (third-level) categories that appear under this top->mid -->
+              {% assign small_categories = '' | split: '' %}
+              {% assign mid_posts = '' | split: '' %}
+              {% for post in posts_of_category %}
+                {% if post.categories[1] == mid %}
+                  {% assign mid_posts = mid_posts | push: post %}
+                  {% assign small = post.categories[2] %}
+                  {% if small %}
+                    {% unless small_categories contains small %}
+                      {% assign small_categories = small_categories | push: small %}
+                    {% endunless %}
                   {% endif %}
-                </span>
+                {% endif %}
+              {% endfor %}
+              {% assign small_categories = small_categories | sort %}
+              {% assign small_size = small_categories | size %}
+              {% assign mid_posts_size = mid_posts | size %}
+
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <i class="far fa-folder fa-fw"></i>
+
+                    {% capture _mid_ctg_url %}/categories/{{ mid | slugify | url_encode }}/{% endcapture %}
+                    <a href="{{ _mid_ctg_url | relative_url }}" class="mx-2">{{ mid }}</a>
+
+                    <span class="text-muted small font-weight-light">
+                      {{ mid_posts_size }}
+                      {% if mid_posts_size > 1 %}
+                        {{
+                          site.data.locales[lang].categories.post_measure.plural
+                          | default: site.data.locales[lang].categories.post_measure
+                        }}
+                      {% else %}
+                        {{
+                          site.data.locales[lang].categories.post_measure.singular
+                          | default: site.data.locales[lang].categories.post_measure
+                        }}
+                      {% endif %}
+                    </span>
+                  </div>
+
+                  <!-- arrow for small categories -->
+                  {% if small_size > 0 %}
+                    <a
+                      href="#{{ MID_PREFIX }}{{ group_index }}_{{ mid_index }}"
+                      data-bs-toggle="collapse"
+                      aria-expanded="true"
+                      aria-label="{{ MID_PREFIX }}{{ group_index }}_{{ mid_index }}-trigger"
+                      class="category-trigger"
+                    >
+                      <i class="fas fa-fw fa-angle-down"></i>
+                    </a>
+                  {% else %}
+                    <span class="category-trigger disabled">
+                      <i class="fas fa-fw fa-angle-right"></i>
+                    </span>
+                  {% endif %}
+                </div>
+
+                <!-- Small categories (third-level) -->
+                {% if small_size > 0 %}
+                  <div id="{{ MID_PREFIX }}{{ group_index }}_{{ mid_index }}" class="collapse show mt-2">
+                    <ul class="list-unstyled ps-4 mb-0">
+                      {% for small in small_categories %}
+                        {% assign small_count = 0 %}
+                        {% for p in posts_of_category %}
+                          {% if p.categories[1] == mid and p.categories[2] == small %}
+                            {% assign small_count = small_count | plus: 1 %}
+                          {% endif %}
+                        {% endfor %}
+
+                        <li class="py-1">
+                          <i class="far fa-file fa-fw"></i>
+                          {% capture _small_ctg_url %}/categories/{{ small | slugify | url_encode }}/{% endcapture %}
+                          <a href="{{ _small_ctg_url | relative_url }}" class="mx-2">{{ small }}</a>
+
+                          <span class="text-muted small font-weight-light">
+                            {{ small_count }}
+                            {% if small_count > 1 %}
+                              {{
+                                site.data.locales[lang].categories.post_measure.plural
+                                | default: site.data.locales[lang].categories.post_measure
+                              }}
+                            {% else %}
+                              {{
+                                site.data.locales[lang].categories.post_measure.singular
+                                | default: site.data.locales[lang].categories.post_measure
+                              }}
+                            {% endif %}
+                          </span>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
               </li>
+
+              {% assign mid_index = mid_index | plus: 1 %}
             {% endfor %}
           </ul>
         </div>

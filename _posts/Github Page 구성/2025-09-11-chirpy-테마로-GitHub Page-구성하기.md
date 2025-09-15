@@ -6,6 +6,7 @@ last_modified_at: 2025-09-13
 categories: 
   - GitHub Page
   - 환경설정
+  - VS Code
 tags: 
   - GitHubPage
   - Jekyll
