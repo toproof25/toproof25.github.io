@@ -166,7 +166,7 @@ layout: page
                 <!-- Small categories (third-level) -->
                 {% if small_size > 0 %}
                   <div id="{{ MID_PREFIX }}{{ group_index }}_{{ mid_index }}" class="collapse show mt-2">
-                    <ul class="list-unstyled ps-4 mb-0">
+                    <ul class="list-unstyled ps-4 mb-0 ml-5">
                       {% for small in small_categories %}
                         {% assign small_count = 0 %}
                         {% for p in posts_of_category %}
