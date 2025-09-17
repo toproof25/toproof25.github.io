@@ -10,6 +10,8 @@ tags:
 - GitHub
 - GutHubPage
 img: /assets/img/2025-09-11-chirpy-테마로-GitHub-Page-구성하기/
+image:
+  path: /assets/img/2025-09-11-chirpy-테마로-GitHub-Page-구성하기/`Server address` 주소로 접속을 해보면, 다운받은 테마로 열린 페이지에 접속을 할 수 있다.webp
 ---
 ## Jekyll Thema 저장소와 로컬에 설치
 
@@ -143,11 +145,13 @@ vs code에서 터미널을 열고 `$ bundle install`을 하고,
 ![다시 터미널에서 `$ bundle exec jekyll serve`을 입력하면]({{page.img}}다시 터미널에서 `$ bundle exec jekyll serve`을 입력하면.webp)
 
 이렇게 무언가 실행이 되는데 여기서 마지막에 `Server address` 주소로 접속을 해보면, 다운받은 테마로 열린 페이지에 접속을 할 수 있다
+
 ![`Server address` 주소로 접속을 해보면, 다운받은 테마로 열린 페이지에 접속을 할 수 있다]({{page.img}}`Server address` 주소로 접속을 해보면, 다운받은 테마로 열린 페이지에 접속을 할 수 있다.webp)
 
 ## 깃허브 저장소에 Push하고 테스트
 최종적으로 GitHub Page에 올리려면 처음에 만든 저장소에 변경사항을 최종적으로 Push를 해야 한다
 먼저 `.gitigoner`에 들어가서 다음 부분을 주석 처리한다
+
 ![먼저 `.gitigoner`에 들어가서 다음 부분을 주석 처리한다]({{page.img}}먼저 `.gitigoner`에 들어가서 다음 부분을 주석 처리한다.webp)
 
 
@@ -160,6 +164,7 @@ $ git push origin master
 ```
 
 깃허브에 가보면 Actions가 작동하는 모습이 보인다
+
 ![깃허브에 가보면 Actions가 작동하는 모습이 보인다1]({{page.img}}깃허브에 가보면 Actions가 작동하는 모습이 보인다1.webp)
 
 ![깃허브에 가보면 Actions가 작동하는 모습이 보인다2]({{page.img}}깃허브에 가보면 Actions가 작동하는 모습이 보인다2.webp)
@@ -192,7 +197,9 @@ $ git push origin master
 
 ### js/dist/\*.min.js 오류로 홈페이지 기능이 동작하지 않는 경우
 해당 오류는 테마에서 사용하는 기능이 일부 부족한 거로 간단하게 아래 두 명령어만 입력하면 된다
+
 ![안되는 경우 dist]({{page.img}}안되는 경우 dist.webp)
+
 - `$ npm install`
 - `$ npm run build`
 이렇게 하면 폴더 내 `node_modules` 폴더와 문제가 발생하는 경로에 정상적으로 파일들이 생성된다
@@ -202,8 +209,9 @@ $ git push origin master
 ---
 ##### 링크 문서
 - 
+
 ##### 참고자료(출처)
--
+- 
 
 
 
