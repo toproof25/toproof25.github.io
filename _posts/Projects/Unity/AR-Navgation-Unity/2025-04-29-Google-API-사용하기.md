@@ -7,24 +7,23 @@ categories:
 - Unity
 - AR-Navgation-Unity
 tags:
-- 지식
 - 캡스톤VR
 - Unity
 - API
 img: /assets/img/2025-04-29-Google-API-사용하기/
 ---
-# Google API 키 발급받기
-- ## [Google Maps Platform](https://developers.google.com/maps?hl=ko)
+## Google API 키 발급받기
+- ### [Google Maps Platform](https://developers.google.com/maps?hl=ko)
 	- Google 로그인 후 시작하기 
 	- 누른 후 결제 정보 등록 (등록해야 API 사용 가능)
 	- API키를 발급하고 두가지 API를 주로 사용
 	  ![API키를 발급하고 두가지 API를 주로 사용]({{page.img}}API키를 발급하고 두가지 API를 주로 사용.webp)
 		- Maps Static API (정적 지도를 받아오는 API)
 		- Directions API (길찾기를 수행하는 API)
-- ## Unity Maps Static 구현
+- ### Unity Maps Static 구현
 	- 내 디바이드 GPS를 가져와서, static map 센터에 요청하여 지도를 받아오기 위해 Image UI를 생성
 	  ![static map 센터에 요청하여 지도를 받아오기 위해 Image UI를 생성]({{page.img}}static map 센터에 요청하여 지도를 받아오기 위해 Image UI를 생성.webp)
-	- ### **GoogleStaticMapRoad.cs** 스크립트 작성
+	- #### **GoogleStaticMapRoad.cs** 스크립트 작성
 		- ![GoogleStaticMapRoad.cs 스크립트 작성]({{page.img}}GoogleStaticMapRoad.cs 스크립트 작성.webp)
 		- API key, 요청값 기본값을 설정
 		  > ```cpp
@@ -96,9 +95,12 @@ img: /assets/img/2025-04-29-Google-API-사용하기/
 	- 처음에는 신경안쓰고 구글 API를 사용하려 했으나, 이러한 정보를 간과하고 접근하여 알게되었다. 
 	- 물론 진행 완전 초반이라 문제는 없이 한국 지도에 특화된 네이버 API를 사용하기로 결정
 
+
+
 ---
 ##### 링크 문서
 - 
+
 ##### 참고자료(출처)
 - [[Unity] Google static map 현재위치 받기](https://velog.io/@jjarseag_kim/Unity-Google-static-map-%ED%98%84%EC%9E%AC%EC%9C%84%EC%B9%98-%EB%B0%9B%EA%B8%B0)
 - [유니티(Unity) 구글 지도 api 사용하기](https://ljhyunstory.tistory.com/265)
