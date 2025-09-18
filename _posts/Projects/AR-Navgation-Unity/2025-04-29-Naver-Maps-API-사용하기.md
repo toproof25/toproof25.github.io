@@ -4,8 +4,7 @@ description: null
 date: 2025-04-29
 categories:
 - Projects
-- Unity
-- AR-Navgation-Unity
+- AR Navgation Unity
 tags:
 - 캡스톤VR
 - Unity
@@ -90,6 +89,8 @@ img: /assets/img/2025-04-29-Naver-Maps-API-사용하기/
 
 
 ---
+## 링크 및 참고자료
+
 ##### 링크 문서
 - 
 
