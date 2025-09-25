@@ -10,7 +10,7 @@ tags:
 - Unity
 - ARCore
 - 고도
-img: /assets/img/2025-05-21-WGS84-앵커에-고도값을-추가/
+img: /assets/img/2025-05-21-WGS84-앵커에-고도값을-추가-Google-Elevation-API/
 ---
 ## 고도
 - ### Google Elevation API
@@ -71,7 +71,7 @@ img: /assets/img/2025-05-21-WGS84-앵커에-고도값을-추가/
 ## Google API의 지형 앵커
 - 위 방법 말고 Google API에서 제공하는 지형 앵커를 사용하는 알아서 고도에 맞게 앵커를 배치할 수 있다
 - 어떤 이유에서인지는 모르겠으나 Google API를 이용하여 길찾기 등 API 사용이 금지된 것인지 아직 모든 지역에서 사용하지 못하는 것인지 *지원되지 않는 지역*오류로 사용하지 못했다
-  ![어떤 이유에서인지는 모르겠으나 Google API를 이용하여 길찾기 등 API 사용이 금지된 것인지]({{page.img}}어떤 이유에서인지는 모르겠으나 Google API를 이용하여 길찾기 등 API 사용이 금지된 것인지.webp)
+  ![어떤 이유에서인지는 모르겠으나 Google API를 이용하여 길찾기 등 API 사용이 금지된 것인지]({{page.img}}어떤 이유에서인지는 모르겠으나 Google API.webp)
 
 ---
 ## 링크 및 참고자료
