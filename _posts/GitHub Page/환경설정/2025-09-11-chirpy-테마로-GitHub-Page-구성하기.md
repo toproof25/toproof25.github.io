@@ -10,8 +10,6 @@ tags:
 - GitHub
 - GutHubPage
 img: /assets/img/2025-09-11-chirpy-테마로-GitHub-Page-구성하기/
-image:
-  path: /assets/img/2025-09-11-chirpy-테마로-GitHub-Page-구성하기/`Server address` 주소로 접속을 해보면, 다운받은 테마로 열린 페이지에 접속을 할 수 있다.webp
 ---
 ## Jekyll Thema 저장소와 로컬에 설치
 
@@ -91,7 +89,7 @@ Fork할 때 저장소 이름을 `your-username.github.io`로 변경해주고, Cr
 
 cmd창을 열고 `$ ruby -v`를 입력하면, 버전 정보가 나와야 정상적으로 설치가 완료된 것이다
 
-![ruby  - cmd창을 열고 `$ ruby -v`를 입력하면, 버전 정보가 나와야 정상적으로 설치가 완료된 것이다]({{page.img}}ruby-버전 정보가 나와야 정상적으로 설치가 완료된 것이다.webp)
+![ruby  - cmd창을 열고 `$ ruby -v`를 입력하면, 버전 정보가 나와야 정상적으로 설치가 완료된 것이다]({{page.img}}ruby  - cmd창을 열고 `$ ruby -v`를 입력하면, 버전 정보가 나와야 정상적으로 설치가 완료된 것이다.webp)
 
 이후 (안해도 되지만) `$ gem update`를 한번 해줘도 좋을 듯 하다...
 
@@ -157,7 +155,7 @@ vs code에서 터미널을 열고 `$ bundle install`을 하고,
 
 
 이후에는 Git에 다음과 같이 push를 해준다
-```
+```git bash
 $ git add .
 $ git commit -m "chore: Jekyll 초기 설정"
 $ git push origin master
@@ -206,7 +204,11 @@ $ git push origin master
 이후 `.gitigoner`에서 `assets/js/dist` 이 부분을 제거하거나 주석처리를 하여 깃허브 저장소에 올려지도록 한다
 
 
+
+
 ---
+## 링크 및 참고자료
+
 ##### 링크 문서
 - 
 
